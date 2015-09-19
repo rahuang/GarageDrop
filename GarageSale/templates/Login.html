@@ -1,83 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800">
-    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}styles/font-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}styles/bootstrap.min.css">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}styles/animate.css">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}styles/all.css">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}styles/main.css">
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}styles/style-responsive.css">
+    <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+    <meta name="author" content="GeeksLabs">
+    <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+    <link rel="shortcut icon" href="img/favicon.png">
+
+    <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
+
+    <!-- Bootstrap CSS -->    
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="{{ STATIC_URL }}css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <!-- font icon -->
+    <link href="{{ STATIC_URL }}css/elegant-icons-style.css" rel="stylesheet" />
+    <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet" />
+    <!-- Custom styles -->
+    <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/style-responsive.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
 </head>
-<body style="background: url('{{ STATIC_URL }}images/bg/bg.png') center center fixed;">
-    <div class="page-form">
-        <div class="panel panel-blue">
-            <div class="panel-body pan">
-                <form action="#" class="form-horizontal">
-                <div class="form-body pal">
-                    <div class="col-md-12 text-center">
-                        <h1 style="margin-top: -90px; font-size: 48px;">
-                            KAdmin</h1>
-                        <br />
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-3">
-                            <img src="{{ STATIC_URL }}images/avatar/profile-pic.png" class="img-responsive" style="margin-top: -35px;" />
-                        </div>
-                        <div class="col-md-9 text-center">
-                            <h1>
-                                Hold on, please.</h1>
-                            <br />
-                            <p>
-                                Just sign in and we’ll send you on your way</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputName" class="col-md-3 control-label">
-                            Username:</label>
-                        <div class="col-md-9">
-                            <div class="input-icon right">
-                                <i class="fa fa-user"></i>
-                                <input id="inputName" type="text" placeholder="" class="form-control" /></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword" class="col-md-3 control-label">
-                            Password:</label>
-                        <div class="col-md-9">
-                            <div class="input-icon right">
-                                <i class="fa fa-lock"></i>
-                                <input id="inputPassword" type="text" placeholder="" class="form-control" /></div>
-                        </div>
-                    </div>
-                    <div class="form-group mbn">
-                        <div class="col-lg-12" align="right">
-                            <div class="form-group mbn">
-                                <div class="col-lg-3">
-                                    &nbsp;
-                                </div>
-                                <div class="col-lg-9">
-                                    <a href="Login.html" class="btn btn-default">Go back</a>&nbsp;&nbsp;
-                                    <button type="submit" class="btn btn-default">
-                                        Sign In</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </form>
+
+  <body class="login-img3-body">
+
+    <div class="container">
+
+      <form class="login-form" action="index.html">        
+        <div class="login-wrap">
+            <p class="login-img"><i class="icon_lock_alt"></i></p>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon_profile"></i></span>
+              <input type="text" class="form-control" placeholder="Username" autofocus>
             </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <input type="password" class="form-control" placeholder="Password">
+            </div>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> Remember me
+                <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>
         </div>
-        <div class="col-lg-12 text-center">
-            <p>
-                Forgot Something ?
-            </p>
-        </div>
+      </form>
+
     </div>
-</body>
+
+
+  </body>
 </html>

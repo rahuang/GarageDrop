@@ -23,51 +23,34 @@
         <div id="tab-general">
             <div class="row">
                 <div class="col-sm-6 col-md-6" style="height: 500px; overflow: scroll;">
-                    <div class="row">
+                    {% for item in items %}
+                        {% if forloop.counter0|divisibleby:2 %}
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="thumbnail"><img data-src="holder.js/300x200/text:hello"/>
 
-                        <div class="col-sm-6 col-md-6">
-                            <div class="thumbnail"><img data-src="holder.js/300x200/text:hello"/>
+                                    <div class="caption"><h3>{{item.name}}</h3>
 
-                                <div class="caption"><h3>Thumbnail label</h3>
+                                        <p>{{item.description}}</p>
 
-                                    <p>Descript</p>
+                                        <p><a href="#" role="button" class="btn btn-primary">Button</a></p></div>
+                                    </div>
+                                </div>
+                        {% else %}
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="thumbnail"><img data-src="holder.js/300x200/text:hello"/>
 
-                                    <p><a href="#" role="button" class="btn btn-primary">Button</a></p></div>
+                                    <div class="caption"><h3>{{item.name}}</h3>
+
+                                        <p>{{item.description}}</p>
+
+                                        <p><a href="#" role="button" class="btn btn-primary">Button</a></p></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="thumbnail"><img data-src="holder.js/300x200/text:hello"/>
-
-                                <div class="caption"><h3>Thumbnail label</h3>
-
-                                    <p>Descript</p>
-
-                                    <p><a href="#" role="button" class="btn btn-primary">Button</a></p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 col-md-6">
-                            <div class="thumbnail"><img data-src="holder.js/300x200/text:hello"/>
-
-                                <div class="caption"><h3>Thumbnail label</h3>
-
-                                    <p>Descript</p>
-
-                                    <p><a href="#" role="button" class="btn btn-primary">Button</a></p></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 col-md-6">
-                            <div class="thumbnail"><img data-src="holder.js/300x200/text:hello"/>
-
-                                <div class="caption"><h3>Thumbnail label</h3>
-
-                                    <p>Descript</p>
-
-                                    <p><a href="#" role="button" class="btn btn-primary">Button</a></p></div>
-                            </div>
-                        </div>
-                    </div>
+                        {% endif %}
+                    {% endfor %}
+                    
                 </div>
                 <div class="col-sm-6 col-md-6">
                     <div class="row">

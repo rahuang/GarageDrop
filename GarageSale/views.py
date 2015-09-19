@@ -1,4 +1,6 @@
 import sys
+import requests
+import postmates
 
 from django.core.exceptions import PermissionDenied
 from django.http import (HttpResponse, HttpResponseNotFound,
@@ -9,6 +11,7 @@ from django.shortcuts import render
 from django.contrib.auth.views import redirect_to_login
 
 from GarageSale.forms import DeliveryQuoteForm
+
 
 
 class ErrorView(View):
@@ -35,10 +38,6 @@ class NotFoundView(ErrorView):
 class IndexPage(TemplateView):
     """ The Index Page. """
     template_name = 'index.html'
-
-class LoginPage(TemplateView):
-    """ The Index Page. """
-    template_name = 'Login.html'
 
 class GaragePage(TemplateView):
     """ The Garage Page. """
@@ -69,11 +68,28 @@ def staff_only(view):
     
     
 def getQuote(request):
+    test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
+    test_id = 'cus_KUqEcMmgrhGHH-'
+
     if request.method == 'POST':
         form = DeliveryQuoteForm(request.POST)
         if form.is_valid():
-            pass
-        return HttpResponse("hi")
+            pickup_address = (form.cleaned_data['start_addr'] + ", " +
+                        form.cleaned_data['start_city'] + ", " +
+                        form.cleaned_data['start_state'] + " "+
+                        form.cleaned_data['start_zip'])
+            dropoff_address = (form.cleaned_data['end_addr'] + ", " +
+                        form.cleaned_data['end_city'] + ", " +
+                        form.cleaned_data['end_state'] + " "+
+                        form.cleaned_data['end_zip'])
+
+            
+                                headers={"dropoff_address" : dropoff_address, "pickup_address" : pickup_address})
+            api = postmates.PostmatesAPI(test_key, test_id)
+            s = str(r.status_code)
+            return HttpResponse(s)
+
+
     else:
         form = DeliveryQuoteForm()
 

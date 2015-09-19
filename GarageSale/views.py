@@ -5,10 +5,10 @@ from django.http import (HttpResponse, HttpResponseNotFound,
     HttpResponseBadRequest, HttpResponseServerError)
 from django.views.generic.base import View
 from django.views.generic import TemplateView
-
 from django.shortcuts import render
-
 from django.contrib.auth.views import redirect_to_login
+
+from GarageSale.forms import DeliveryQuoteForm
 
 
 class ErrorView(View):
@@ -64,3 +64,13 @@ def staff_only(view):
     return decorated_view
     
     
+def getQuote(request):
+    if request.method == 'POST':
+        form = DeliveryQuoteForm(request.POST)
+        if form.is_valid():
+            pass
+        return HttpResponse("hi")
+    else:
+        form = DeliveryQuoteForm()
+
+    return render (request, 'getQuote.html' , {'form' : form})

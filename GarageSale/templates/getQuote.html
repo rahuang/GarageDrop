@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Orders Page{% endblock %}
+
+{% block body %}
+    <div style = "float:right;">
+        <form method="post"  action="/getquote/">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit" />
+        </form>    
+    </div>
+    
+{% endblock %}
+

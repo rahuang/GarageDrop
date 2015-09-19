@@ -191,7 +191,7 @@ try:
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     
     SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = False
     
     # Serve this application under the following host names only
     ALLOWED_HOSTS = ['*']

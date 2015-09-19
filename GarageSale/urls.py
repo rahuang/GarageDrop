@@ -17,11 +17,12 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     
     url(r'^$', views.IndexPage.as_view(), name='index'),
+    url(r'^login/', views.LoginPage.as_view(), name='login'),
     url(r'^garage/$', views.GaragePage.as_view(), name='garage'),
     url(r'^orders/$', views.OrdersPage.as_view(), name='orders'),
     url(r'^account/$', views.AccountPage.as_view(), name='account'),
     url(r'^getquote/$', view = 'GarageSale.views.getQuote', name='account'),
-    
+
     url(r'^test/', include('testapp.urls')),
     url(r'^users/', include('users.urls')),
     

@@ -36,6 +36,10 @@ class IndexPage(TemplateView):
     """ The Index Page. """
     template_name = 'index.html'
 
+class LoginPage(TemplateView):
+    """ The Index Page. """
+    template_name = 'Login.html'
+
 class GaragePage(TemplateView):
     """ The Garage Page. """
     template_name = 'garage.html'

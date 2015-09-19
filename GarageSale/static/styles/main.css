@@ -1018,7 +1018,7 @@ background: #303030; /* Old browsers */
   .navbar-static-side {
     z-index: 1;
     position: absolute;
-    width: 250px;
+    width: 250zpx;
   }
 }
 .right-sidebar #topbar .navbar-header {

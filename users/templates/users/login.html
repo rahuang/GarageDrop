@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Login Page{% endblock %}
+
+{% block body %}
+    <h2>Login Page</h2>
+    <p><a href="{% url 'users_register' %}">Register Here</a></p>
+    <div>
+        <form name="login" action="{% url 'users_processlog' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="username">
+            <input type="password" name="password">
+            <input type="submit" value="Login">
+        </form>
+    </div>
+{% endblock %}
+

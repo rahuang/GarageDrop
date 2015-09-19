@@ -1,0 +1,1 @@
+web: gunicorn GarageSale.wsgi:application

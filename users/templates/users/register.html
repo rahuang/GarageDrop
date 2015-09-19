@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Page{% endblock %}
+
+{% block body %}
+    <h2>Register Page</h2>
+    <div>
+        <form name="register" action="{% url 'users_processreg' %}" method="POST">
+            {% csrf_token %}
+            <p>Email: <input type="text" name="email"></p>
+            <p>Username: <input type="text" name="username"></p>
+            <p>Password: <input type="password" name="password"></p>
+            <p>First Name: <input type="text" name="firstname"></p>
+            <p>Last Name: <input type="text" name="lastname"></p>
+            <p>
+                Gender:
+                <select name="gender">
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                    <option value="O">Other</option>
+                </select>
+            </p>
+            <input type="submit" value="Register">
+        </form>
+    </div>
+{% endblock %}
+

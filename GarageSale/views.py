@@ -42,7 +42,6 @@ class NotFoundView(ErrorView):
     
     
 class IndexPage(TemplateView):
-<<<<<<< HEAD
     """ The Index Page. """
     #template_name = 'index.html'
     def get(self, request):

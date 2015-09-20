@@ -139,16 +139,15 @@ hr {
 #topbar {
   background: #ffffff;
   width: 100%;
-  height: 50px;
+  height: 75px;
 }
 #topbar.navbar-default {
   border: 0;
 }
 #topbar .navbar-header {
-  width: 250px;
+  width: 200px;
   height: 100%;
   background: #1E1E1E;
-  text-align: center;
 }
 
 #topbar .navbar-header #logo {
@@ -174,7 +173,7 @@ hr {
 }
 #topbar .topbar-main #menu-toggle {
   float: left;
-  padding: 15px 20px;
+  padding: 30px 20px;
   background: transparent;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -279,7 +278,9 @@ hr {
   transition: all 0.2s ease-in-out;
 }
 #topbar #topbar-search input {
-  padding: 15px 30px !important;
+  padding: 5px 30px !important;
+  position: relative;
+  top: 20px;
   height: 100%;
   border: 0 !important;
   border-radius: 0;
@@ -288,9 +289,11 @@ hr {
 }
 #topbar .navbar-top-links li {
   display: inline-block;
+
 }
 #topbar .navbar-top-links li:last-child {
   margin-right: 15px;
+  margin-top: 10px;
 }
 #topbar .navbar-top-links li.open > a {
   background: #3C3C3C !important;
@@ -349,7 +352,7 @@ hr {
   color: #FFFFFF;
 }
 #topbar .navbar-top-links li.topbar-user a {
-  padding: 12px 15px 11px;
+  padding: 20px 15px 11px;
 }
 #topbar .navbar-top-links li.topbar-user a img {
   margin-right: 5px;
@@ -7047,3 +7050,13 @@ ul.chats li.out .message {
 
 .gm-style-iw + div {display: none;}
 
+
+.gpanel{
+  border-left: solid black 0px;
+  border-right: solid black 0px;
+
+}
+
+.garage-content h1 {
+  margin-left: 25px;
+}

@@ -189,6 +189,49 @@ class OrdersPage(TemplateView):
        return render(request, 'orders.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
                                               "sold_items" : sold_items})
 
+
+class CheckoutPage(TemplateView):
+    """ The Account Page. """
+    def post(self, request):
+        test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
+        test_id = 'cus_KUqEcMmgrhGHH-'
+        api = pm.PostmatesAPI(test_key, test_id)
+
+
+        connection = httplib.HTTPSConnection('api.parse.com', 443)
+        params = urllib.urlencode({"where":json.dumps({
+          "username": {"$ne" : "bob"},
+          "status" : "IN TRANSIT"
+          })})
+
+        connection.connect()
+        connection.request('GET', '/1/classes/Items?%s' % params, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+        result = json.loads(connection.getresponse().read())
+        trans_items = result['results']
+
+        for item in trans_items:
+            pickup = pm.Location(item['username'], item['address'], '415-555-0000')
+            dropoff = pm.Location('bob', '85 Prescott St, Cambridge, MA', '415-777-9999')
+            delivery = pm.Delivery(api, item['description'], pickup, dropoff)
+            delivery.create()
+
+
+        deliveries = api.get_all_deliveries()
+        return HttpResponse(deliveries[''])
+
+    def get(self, request):
+        test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
+        test_id = 'cus_KUqEcMmgrhGHH-'
+        api = pm.PostmatesAPI(test_key, test_id)
+
+        deliveries = api.get_all_deliveries()
+        return HttpResponse(deliveries['data'])
+
+
+
 class AccountPage(TemplateView):
     """ The Account Page. """
     template_name = 'account.html'

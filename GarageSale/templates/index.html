@@ -83,7 +83,11 @@
                                         <p>{{item.description}}</p>
                                         <h3 class="index-price">${{item.price|floatformat:2}}</h3>
 
-                                        <p><a href="#" role="button" class="btn btn-primary">Add to Cart</a></p></div>
+                                        <p><form method="POST" action="/mycart/">
+                                            {% csrf_token %}
+                                            <input type=text name="item" value="{{item.objectId}}" hidden>
+                                            <input type=submit role="button" class="btn btn-primary" value="Add to Cart">
+                                        </form></p></div>
                                     </div>
                                 </div>
                             {% if forloop.counter == items|length %}
@@ -98,7 +102,11 @@
                                         <p>{{item.description}}</p>
                                         <h3 class="index-price">${{item.price|floatformat:2}}</h3>
 
-                                        <p><a href="#" role="button" class="btn btn-primary">Add to Cart</a></p></div>
+                                        <p><form method="POST" action="/mycart/">
+                                            {% csrf_token %}
+                                            <input type=text name="item" value="{{item.objectId}}" hidden>
+                                            <input type=submit role="button" class="btn btn-primary" value="Add to Cart">
+                                        </form></p></div>
                                     </div>
                                 </div>
                             </div>

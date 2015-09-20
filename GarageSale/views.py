@@ -115,8 +115,8 @@ class MyCartPage(TemplateView):
     """ The Orders Page. """
 
     def common(self, request):
-        test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
-        test_id = 'cus_KUqEcMmgrhGHH-'
+        test_key = '03c270d0-d388-4c1a-8aad-468de79ecfde'
+        test_id = 'cus_KUuM-I53KYnm5F'
         api = pm.PostmatesAPI(test_key, test_id)
 
 
@@ -211,8 +211,8 @@ class OrdersPage(TemplateView):
 class CheckoutPage(TemplateView):
     """ The Account Page. """
     def post(self, request):
-        test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
-        test_id = 'cus_KUqEcMmgrhGHH-'
+        test_key = '03c270d0-d388-4c1a-8aad-468de79ecfde'
+        test_id = 'cus_KUuM-I53KYnm5F'
         api = pm.PostmatesAPI(test_key, test_id)
 
 
@@ -246,8 +246,8 @@ class CheckoutPage(TemplateView):
 
 class DeliveryDataPage(TemplateView):
     def get(self, request):
-        test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
-        test_id = 'cus_KUqEcMmgrhGHH-'
+        test_key = '03c270d0-d388-4c1a-8aad-468de79ecfde'
+        test_id = 'cus_KUuM-I53KYnm5F'
         api = pm.PostmatesAPI(test_key, test_id)
 
         deliveries = api.get_all_deliveries()

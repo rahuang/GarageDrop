@@ -7035,3 +7035,6 @@ ul.chats li.out .message {
   position: absolute;
   left: 150px;
 }
+
+
+.gm-style-iw + div {display: none;}

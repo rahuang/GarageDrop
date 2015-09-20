@@ -32,12 +32,12 @@
 </head>
 <body>
 <div id ="clouds">
-    <form class="login-form" action="/">        
+    <form id="login-form" class="login-form" action="">        
         <div class="login-wrap">
             <p class="login-img"><img src='../static/img/Garage_Drop_Logo.png' height = "120" width = "150"></i></p>
             <div class="input-group">
               <span class="input-group-addon"><i class="icon_profile"></i></span>
-              <input type="text" class="form-control" placeholder="Username" autofocus>
+              <input id="username" type="text" class="form-control" placeholder="Username" autofocus>
             </div>
             <div class="input-group">
                 <span class="input-group-addon"><i class="icon_key_alt"></i></span>
@@ -47,7 +47,14 @@
                 <input type="checkbox" value="remember-me"> Remember me
                 <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
             </label>
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+            <script type="text/javascript">
+                function changeAction(){
+                    var username = $("#username").val();
+                    window.location = "/home/" +  username;
+                    $("#login-form").attr("action", "/home/" +  username);
+                }
+            </script>
+            <button onclick="changeAction();" class="btn btn-primary btn-lg btn-block">Login</button>
         </div>
     </form>
 </div>

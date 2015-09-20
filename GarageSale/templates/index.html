@@ -9,14 +9,12 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcx2ylowTOZjDtyXHei3BUr6OKITdB4IE"></script>
 <script src="{{ STATIC_URL }}script/mapModel.js"></script>
 <script type="text/javascript">
-var markers = []
 function initMap(lat, lng, locations) {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: lat, lng: lng},
         zoom: 17
     });
-
-    markers = placeMarkers(locations, map);
+    var markers = placeMarkers(locations, map);
     setMapOnAll(markers, map);
     map.setZoom(10);
 }

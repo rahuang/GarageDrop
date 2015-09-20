@@ -7015,8 +7015,22 @@ ul.chats li.out .message {
   border: 1px solid #e5e5e5;
 }
 
+.garage-image {
+  width: 150px;
+  height: 150px;
+  border: solid gray 2px;
+}
 
-.price{
+.price {
+  float:right;
+  text-align: right;
+}
+.price h2 {
+  font-size: 50px;
+}
+
+
+.index-price{
   bottom: 108px;
   position: absolute;
   left: 150px;

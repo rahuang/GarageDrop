@@ -77,11 +77,81 @@ class IndexPage(TemplateView):
         # return HttpResponse(json_items[0])
         return render(request, 'index.html', {"items": items, "locations": json_items})
 
+class IndexjPage(TemplateView):
+    """ The Index Page. """
+    #template_name = 'index.html'
+    def get(self, request):
+        params = request.GET
+        connection = httplib.HTTPSConnection('api.parse.com', 443)
+        constraints = {
+           "username": {
+                "$ne": "jack"
+            }
+         }
+
+        search_params = urllib.urlencode({"where":json.dumps(constraints)})
+        connection.connect()
+        connection.request('GET', '/1/classes/Items?%s' % search_params, '', {
+               "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+               "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+             })
+        result = json.loads(connection.getresponse().read())
+        items = result['results']
+        json_items = json.dumps(items)
+        # return HttpResponse(items)
+        return render(request, 'index.html', {"items": items, "locations": json_items})
+
 class LoginPage(TemplateView):
     """ The Account Page. """
     template_name = 'Login.html'
 
+
+class LoginPage(TemplateView):
+    """ The Account Page. """
+    template_name = 'Login.html'
+
+
+
 class GaragePage(TemplateView):
+    """ The Garage Page. """
+    #template_name = 'garage.html'
+    def get(self, request):
+        connection = httplib.HTTPSConnection('api.parse.com', 443)
+        params1 = urllib.urlencode({"where":json.dumps({
+            "username": "jack",
+            "status" : "IN TRANSIT"
+            })})
+        params2 = urllib.urlencode({"where":json.dumps({
+            "username": "jack",
+            "status" : "UNSOLD"
+            })})
+        params3 = urllib.urlencode({"where":json.dumps({
+            "username": "jack",
+            "status" : "SOLD"
+            })})
+        connection.connect()
+        connection.request('GET', '/1/classes/Items?%s' % params1, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+        result = json.loads(connection.getresponse().read())
+        trans_items = result['results']
+        connection.request('GET', '/1/classes/Items?%s' % params2, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+        result = json.loads(connection.getresponse().read())
+        unsold_items = result['results']
+        connection.request('GET', '/1/classes/Items?%s' % params3, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+        result = json.loads(connection.getresponse().read())
+        sold_items = result['results']
+        return render(request, 'garage.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
+                                              "sold_items" : sold_items})
+
+class GaragebPage(TemplateView):
     """ The Garage Page. """
     #template_name = 'garage.html'
     def get(self, request):
@@ -119,6 +189,8 @@ class GaragePage(TemplateView):
         sold_items = result['results']
         return render(request, 'garage.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
                                               "sold_items" : sold_items})
+
+
 
 
 class MyCartPage(TemplateView):
@@ -184,7 +256,7 @@ class OrdersPage(TemplateView):
     def get(self, request):
        connection = httplib.HTTPSConnection('api.parse.com', 443)
        params1 = urllib.urlencode({"where":json.dumps({
-          "username": "bob",
+          "username": {'$ne' : 'bob'},
           "status" : "IN TRANSIT"
           })})
        params2 = urllib.urlencode({"where":json.dumps({
@@ -202,19 +274,14 @@ class OrdersPage(TemplateView):
             })
        result = json.loads(connection.getresponse().read())
        trans_items = result['results']
-       connection.request('GET', '/1/classes/Items?%s' % params2, '', {
-              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
-              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
-            })
-       result = json.loads(connection.getresponse().read())
-       unsold_items = result['results']
+
        connection.request('GET', '/1/classes/Items?%s' % params3, '', {
               "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
               "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
             })
        result = json.loads(connection.getresponse().read())
        sold_items = result['results']
-       return render(request, 'orders.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
+       return render(request, 'orders.html', {"trans_items": trans_items,
                                               "sold_items" : sold_items})
 
 
@@ -242,7 +309,7 @@ class CheckoutPage(TemplateView):
 
         for item in trans_items:
             pickup = pm.Location(item['username'], item['address'], '415-555-0000')
-            dropoff = pm.Location('bob', '1 City Hall Square, Boston, MA', '415-777-9999')
+            dropoff = pm.Location('bob', '85 Prescott St, Cambridge, MA', '415-777-9999')
             delivery = pm.Delivery(api, item['description'], pickup, dropoff)
             delivery.create()
 

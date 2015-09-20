@@ -201,7 +201,7 @@
                                         </div>
                                         
 
-                                        <p><form method="POST" action="/mycart/">
+                                        <p><form method="POST" action="{% url 'mycart' %}">
                                             {% csrf_token %}
                                             <input type=text name="item" value="{{item.objectId}}" hidden>
                                             <input type=submit role="button" class="btn btn-primary" value="Add to Cart">

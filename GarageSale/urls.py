@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^garage/$', views.GaragePage.as_view(), name='garage'),
     url(r'^orders/$', views.OrdersPage.as_view(), name='orders'),
     url(r'^account/$', views.AccountPage.as_view(), name='account'),
+    url(r'^mycart/$', views.AccountPage.as_view(), name='mycart'),
+
     
 
     url(r'^test/', include('testapp.urls')),

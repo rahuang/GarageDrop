@@ -30,54 +30,83 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-<body id = "wrapper">
-<div class="container">
-    <div> 
-        <ul class = "login">
+<body>
+<div id ="clouds">
+    <form class="login-form" action="index.html">        
+        <div class="login-wrap">
+            <p class="login-img"><img src='../static/img/Garage_Drop_Logo.png' height = "120" width = "150"></i></p>
+            <div class="input-group">
+              <span class="input-group-addon"><i class="icon_profile"></i></span>
+              <input type="text" class="form-control" placeholder="Username" autofocus>
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                <input type="password" class="form-control" placeholder="Password">
+            </div>
+            <label class="checkbox">
+                <input type="checkbox" value="remember-me"> Remember me
+                <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
+            </label>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+        </div>
+    </form>
+</div>
+<div class = "pin">
+</div>
+<div id = "wrapper">
+    <div class="container">
+        <div> 
+            <ul class = "login">
+                <li>
+                    <button class="btn login_btn" type="submit">Login</button>
+                </li>
+                <li>
+                    <button class="btn signup_btn" type="submit">Signup</button>
+                </li>
+            </ul>
+        </div>
+        <div class = 'logo_bar'>
+            <div class = 'logo'>
+                <a href="#">
+                    <img src='../static/img/Garage_Drop_Logo.png' height = "200" width = "240">
+                </a>
+            </div>
+        </div>
+        <div> 
+            <div class = 'ball_bounce'>
+               <!--  <img id = "ball" src='../static/img/ball_bounce.png'> -->
+            </div>
+        </div>
+        <div class = "grass right">
+        </div>
+        <div class = "grass left">
+        </div>
+    </div>
+    <div class = "hidden">
+        <ul>
             <li>
-                <button class="btn login_btn" type="submit">Login</button>
+                <img src='../static/img/ball_bounce.gif'>
             </li>
             <li>
-                <button class="btn signup_btn" type="submit">Signup</button>
+                <img src='../static/img/ball_bounce.png'>
+            </li>
+            <li>
+                <img src='../static/img/ball_bounce_stop.png'>
+            </li>
+            <li>
+                <img src='../static/img/garage_sale_login_close.gif'>
+            </li>
+            <li>
+                <img src='../static/img/garage_sale_login_open.gif'>
+            </li>
+            <li>
+                <img src='../static/img/garage_sale_login_open.png'>
+            </li>
+            <li>
+                <img src='../static/img/garage_sale_login_open2.png'>
             </li>
         </ul>
     </div>
-    <div class = 'logo_bar'>
-        <div class = 'logo'>
-            <a href="#">
-                <img src='../static/img/Garage_Drop_Logo.png' height = "200" width = "240">
-            </a>
-        </div>
-    </div>
-    <div> 
-        <div class = 'ball_bounce'>
-        </div>
-    </div>
-</div>
-<div class = "hidden">
-    <ul>
-        <li>
-            <img src='../static/img/ball_bounce.gif'>
-        </li>
-        <li>
-            <img src='../static/img/ball_bounce.png'>
-        </li>
-        <li>
-            <img src='../static/img/ball_bounce_stop.png'>
-        </li>
-        <li>
-            <img src='../static/img/garage_sale_login_close.gif'>
-        </li>
-        <li>
-            <img src='../static/img/garage_sale_login_open.gif'>
-        </li>
-        <li>
-            <img src='../static/img/garage_sale_login_open.png'>
-        </li>
-        <li>
-            <img src='../static/img/garage_sale_login_open2.png'>
-        </li>
-    </ul>
 </div>
 <!--     <form class="login-form" action="index.html">        
         <div class="login-wrap">

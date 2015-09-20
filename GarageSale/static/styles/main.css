@@ -45,7 +45,7 @@ body {
   font-size: 13px;
   line-height: 1.42857143;
   color: #999999;
-  background-color: #f0f2f5;
+  background-color: #19a9d8;
   height: 100%;
 }
 input,
@@ -121,7 +121,7 @@ hr {
 #wrapper {
   width: 100%;
   min-height: 100%;
-  background-color: #3C3C3C;
+  background-color: #ffffff;
 }
 #page-wrapper {
   min-height: 100%;
@@ -147,7 +147,7 @@ hr {
 #topbar .navbar-header {
   width: 200px;
   height: 100%;
-  background: #1E1E1E;
+  background: #ffffff;
 }
 
 #topbar .navbar-header #logo {
@@ -169,7 +169,7 @@ hr {
 #topbar .topbar-main {
   display: block;
   height: 100%;
-  background: #1E1E1E;
+  background: #ffffff;
 }
 #topbar .topbar-main #menu-toggle {
   float: left;
@@ -178,7 +178,7 @@ hr {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   border-radius: 0;
-  color: #ffffff;
+  color: #19a9d8;
 }
 #topbar .topbar-main #menu-toggle:hover,
 #topbar .topbar-main #menu-toggle:focus {
@@ -264,16 +264,17 @@ hr {
   color: #ffffff;
 }
 #topbar #topbar-search {
-  width: 300px;
+  width: 350px;
   padding-right: 2px;
   float: left;
 }
 #topbar #topbar-search i {
+  width: 250px;
   font-size: 20px;
   margin: 0;
   top: 17px;
   right: 12px;
-  color: #ffffff;
+  color: ##f0f2f5;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -284,7 +285,7 @@ hr {
   height: 100%;
   border: 0 !important;
   border-radius: 0;
-  background: #3C3C3C;
+  background: #f0f2f5;
   
 }
 #topbar .navbar-top-links li {
@@ -296,37 +297,37 @@ hr {
   margin-top: 10px;
 }
 #topbar .navbar-top-links li.open > a {
-  background: #3C3C3C !important;
-  color: #ffffff !important;
+  background: #f0f2f5 !important;
+  color: #19a9d8 !important;
 }
 #topbar .navbar-top-links li.open > a:hover,
 #topbar .navbar-top-links li.open > a:focus {
-  background: #3C3C3C !important;
+  background: #f0f2f5 !important;
 }
 #topbar .navbar-top-links li.open > a i {
-  color: #ffffff;
+  color: #19a9d8;
 }
 #topbar .navbar-top-links li > a {
   padding: 15px 20px;
   height: 100%;
-  color: #ffffff;
+  color: #19a9d8;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
 #topbar .navbar-top-links li > a:hover,
 #topbar .navbar-top-links li > a:focus {
-  background: #3C3C3C !important;
+  background: #f0f2f5 !important;
 }
 #topbar .navbar-top-links li > a i {
   font-size: 16px;
-  color: #ffffff;
+  color: #19a9d8;
 }
 #topbar .navbar-top-links li > a span.badge {
   position: absolute;
   top: 5px;
   right: 30px;
   padding: 3px 6px;
-  color: #ffffff;
+  color: #f0f2f5;
 }
 #topbar .navbar-top-links li > a img {
   position: relative;
@@ -812,7 +813,7 @@ hr {
   padding-top: 50px !important;
 }
 #sidebar {
-  background: #3C3C3C;
+  background: #ffffff;
 }
 .navbar-static-side {
   transition: 0.3s all linear;
@@ -825,20 +826,20 @@ hr {
 }
 .navbar-static-side ul li
 {
-   background: #3C3C3C; /* Old browsers */
+   background: #ffffff; /* Old browsers */
      outline: none;
-      color:#d9d9d9;
+      color:#000000;
     
 }
 
 .navbar-static-side ul li.active a {
-background: #3e77ab; /* Old browsers */
+background: #19a9d8; /* Old browsers */
   transition: 0.2s all ease-in-out;
   outline: none;
-  color:#FFF;
+  color:#ffffff;
 }
 .navbar-static-side ul li a {
-  color: #d9d9d9;
+  color: #999999;
   padding: 15px;
 }
 .navbar-static-side ul li a span.menu-title {
@@ -4512,7 +4513,8 @@ fieldset[disabled] .btn-default.active {
 }
 .btn-primary {
   color: #ffffff;
-  border: 1px solid #1f68b1;
+  border: 1px solid #19a9d8;
+  background-color: #19a9d8;
   
 }
 .btn-primary:hover,
@@ -4520,9 +4522,9 @@ fieldset[disabled] .btn-default.active {
 .btn-primary:active,
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
-  color: #ffffff;
-  background-color: #1f68b1;
-  border-color: #1a548d;
+  color: #19a9d8;
+  background-color: #ffffff;
+  border-color: #19a9d8;
 }
 .btn-primary:active,
 .btn-primary.active,
@@ -5676,7 +5678,7 @@ li [class*=" icon-"].icon-large {
   color: #594857 !important;
 }
 .text-white {
-  color: #ffffff !important;
+  color: #19a9d8 !important;
 }
 .text-facebook {
   color: #418bca;

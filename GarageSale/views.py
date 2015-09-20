@@ -1,6 +1,9 @@
 import sys
 import requests
 import postmates
+import httplib
+import json
+import urllib
 
 from django.core.exceptions import PermissionDenied
 from django.http import (HttpResponse, HttpResponseNotFound,
@@ -11,6 +14,8 @@ from django.shortcuts import render
 from django.contrib.auth.views import redirect_to_login
 
 from GarageSale.forms import DeliveryQuoteForm
+
+import json,httplib, urllib
 
 
 
@@ -37,11 +42,81 @@ class NotFoundView(ErrorView):
     
 class IndexPage(TemplateView):
     """ The Index Page. """
-    template_name = 'index.html'
+    #template_name = 'index.html'
+    def get(self, request):
+       connection = httplib.HTTPSConnection('api.parse.com', 443)
+       params = urllib.urlencode({"where":json.dumps({
+          "username": {
+               "$ne": "bob"
+           },
+        })})
+       connection.connect()
+       connection.request('GET', '/1/classes/Items?%s' % params, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+       result = json.loads(connection.getresponse().read())
+       items = result['results']
+       return render(request, 'index.html', {"items": items})
+
+    def get(self, request):
+        connection = httplib.HTTPSConnection('api.parse.com', 443)
+        params = urllib.urlencode({"where":json.dumps({
+           "username": {
+                "$ne": "bob"
+            },
+         })})
+        connection.connect()
+        connection.request('GET', '/1/classes/Items?%s' % params, '', {
+               "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+               "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+             })
+        result = json.loads(connection.getresponse().read())
+        items = result['results']
+        return render(request, 'index.html', {"items": items, "locations": json.dumps(items)})
+
+class LoginPage(TemplateView):
+    """ The Account Page. """
+    template_name = 'Login.html'
 
 class GaragePage(TemplateView):
     """ The Garage Page. """
-    template_name = 'garage.html'
+    #template_name = 'garage.html'
+    def get(self, request):
+       connection = httplib.HTTPSConnection('api.parse.com', 443)
+       params1 = urllib.urlencode({"where":json.dumps({
+          "username": "bob",
+          "status" : "IN TRANSIT"
+          })})
+       params2 = urllib.urlencode({"where":json.dumps({
+          "username": "bob",
+          "status" : "UNSOLD"
+          })})
+       params3 = urllib.urlencode({"where":json.dumps({
+          "username": "bob",
+          "status" : "SOLD"
+          })})
+       connection.connect()
+       connection.request('GET', '/1/classes/Items?%s' % params1, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+       result = json.loads(connection.getresponse().read())
+       trans_items = result['results']
+       connection.request('GET', '/1/classes/Items?%s' % params2, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+       result = json.loads(connection.getresponse().read())
+       unsold_items = result['results']
+       connection.request('GET', '/1/classes/Items?%s' % params3, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+       result = json.loads(connection.getresponse().read())
+       sold_items = result['results']
+       return render(request, 'garage.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
+                                              "sold_items" : sold_items})
 
 class OrdersPage(TemplateView):
     """ The Orders Page. """
@@ -67,30 +142,4 @@ def staff_only(view):
     return decorated_view
     
     
-def getQuote(request):
-    test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
-    test_id = 'cus_KUqEcMmgrhGHH-'
 
-    if request.method == 'POST':
-        form = DeliveryQuoteForm(request.POST)
-        if form.is_valid():
-            pickup_address = (form.cleaned_data['start_addr'] + ", " +
-                        form.cleaned_data['start_city'] + ", " +
-                        form.cleaned_data['start_state'] + " "+
-                        form.cleaned_data['start_zip'])
-            dropoff_address = (form.cleaned_data['end_addr'] + ", " +
-                        form.cleaned_data['end_city'] + ", " +
-                        form.cleaned_data['end_state'] + " "+
-                        form.cleaned_data['end_zip'])
-
-            
-                                headers={"dropoff_address" : dropoff_address, "pickup_address" : pickup_address})
-            api = postmates.PostmatesAPI(test_key, test_id)
-            s = str(r.status_code)
-            return HttpResponse(s)
-
-
-    else:
-        form = DeliveryQuoteForm()
-
-    return render (request, 'getQuote.html' , {'form' : form})

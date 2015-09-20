@@ -8,25 +8,35 @@ Website: http://geekslabs.com/
 /* Import fonts */
 @import url(http://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic);
 @import url(line-icons.css);
-
 html, body {
     height: 100%;
     margin: 0;
 }
 #wrapper {
+    position: absolute;
+    width: 800px;
+    left: 230px;
     min-height: 100%; 
     background: url('../img/garage_sale_login.png') no-repeat center center ;
     background-size: 800px 600px;
     padding-top: 20px;
 }
-
+#clouds {
+    position: absolute;
+    width: 1000px;
+    top: -800px;
+    min-height: 100%; 
+    background: url('../img/Login_Clouds.png') no-repeat center center ;
+    background-size: 1000px 800px;
+}
 body {
     color: #797979;
     background: #eeeeee;
     font-family: 'Lato', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
-    font-size:14px !important;    
+    font-size:14px !important; 
+    overflow: hidden;  
 }
 h1,h2,h3,h4,h5{
     font-weight: 300;
@@ -80,47 +90,91 @@ table tr th { color: #688a7e;}
 
 /*login page*/
 
-.login-body {
-    background-color: #f1f2f7;
+.login{
+    margin-top: 20px;
 }
-.login-img-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.login-img2-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-.login-img3-body{
-  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+.login li{
+    display: inline;
 }
 
-
-.navbar-default{
-    background: #d5d7de;
+.login .btn:hover{
+    background-color: #236267;
+    border: 1px solid white;
+    color: white;
 }
 
-.navbar-brand{
-    padding: 0px;
-    background: rgba(0, 0, 0, 0.5);
+.login .btn{
+    background-color: white;
+    border: 1px solid #236267;
+    color: #236267;
+}
+
+.logo_bar{
+    left: 280px;
+    top: 130px;
+    position: absolute;
+    text-align:center;
+}
+
+.logo{
+    margin:auto;
+    width: 240px;
+    height: 200px;
+}
+
+.ball_bounce{
+    position: absolute;
+    top: 335px;
+    left: 50px;
+    text-align: middle;
+    width: 800px;
+    height:400px;
+    margin: auto;
+}
+
+.ball_bounce img{
+    position: relative;
+    top: 24px;
+    left: 220px;
+}
+
+.grass{
+    position: absolute;
+    top:425px;
+    background: url('../img/grass.png') no-repeat center center ;
+    height:200px;
+    width: 372px;
+}
+
+.left{
+    left: -200px;
+}
+
+.right{
+    left: 670px;
+}
+
+.pin{
+    background: url('../img/pin.png') no-repeat center center ;
+    position: absolute;
+    width:450px;
+    height: 659px;
+    top: -1500px;
+    left: 200px;
+    opacity: 0.5;
+}
+
+.hidden ul li img{
+    visibility: hidden;
+    position: absolute;
 }
 
 .login-form {
     position: relative;
-    right: 100px;
+    left: 500px;
     max-width: 350px;
     margin: 200px auto 0;
-    background: #d5d7de;    
+    background: rgba(25, 169, 216, 0.5)    
 }
 .login-img-body .login-form{
     max-width: 350px;
@@ -1161,11 +1215,7 @@ div[data-role="editor-toolbar"] {
   color: #333;
   border-left: 1px solid rgba(0,0,0,.09);
 }
-<<<<<<< HEAD
 .panel-actions .n-setting:hover,
-=======
-.panel-actions .btn-setting:hover,
->>>>>>> 2370b36cdd7df21c1d8fb1caa1b6fee708e9d51e
 .panel-actions .btn-minimize:hover,
 .panel-actions .btn-close:hover {
   background-color: rgba(0,0,0,.05);

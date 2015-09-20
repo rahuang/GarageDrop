@@ -38,7 +38,7 @@
                                     <p>{{ item.description }}</p>
                                 </div>
                                 <div class="price">
-                                    <h2>${{ item.price }}.99</h2>
+                                    <h2>${{ item.price|floatformat:2 }}</h2>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                     <p>{{ item.description }}</p>
                                 </div>
                                 <div class="price">
-                                    <h2>${{ item.price }}.50</h2>
+                                    <h2>${{ item.price|floatformat:2 }}</h2>
                                 </div>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                     <p>{{ item.description }}</p>
                                 </div>
                                 <div class="price">
-                                    <h2>${{ item.price }}.</h2>
+                                    <h2>${{ item.price|floatformat:2 }}</h2>
                                 </div>
                             </div>
                         </div>

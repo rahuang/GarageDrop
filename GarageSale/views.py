@@ -252,6 +252,38 @@ class DeliveryDataPage(TemplateView):
         # return HttpResponse(json.dumps(deliveries))
         return render(request, "data.html", {"deliveries": deliveries, "data":random.randint(0, 5)})
 
+class AddItemPage(TemplateView):
+    def post(self, request):
+        if request.method == 'POST':
+            form = request.POST
+            name = form['name']
+            address = form['address']
+            price = form['price']
+            description = form['description']
+            #hardcoding to jack
+            connection = httplib.HTTPSConnection('api.parse.com', 443)
+            connection.connect()
+            connection.request('POST', '/1/classes/Items', json.dumps({
+                "name": name,
+                "address": address,
+                "price": price,
+                "description" : description,
+                "status" : "UNSOLD",
+                "username" : "jack",
+                "location": {
+                    "__type": "GeoPoint",
+                    "latitude": 42.3611,
+                    "longitude": -71.2323
+                }
+                }), {
+                   "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+                   "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI",
+                   "Content-Type": "application/json"
+                })
+            results = json.loads(connection.getresponse().read())        
+            return HttpResponse(results)
+    
+
 class AccountPage(TemplateView):
     """ The Account Page. """
     template_name = 'account.html'

@@ -82,59 +82,59 @@
           <div class="modal-body">
             <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.15.min.js"></script>
             <script type="text/javascript">
-              $(function() {
-                var file;
+              // $(function() {
+              //   var file;
 
-                // Set an event listener on the Choose File field.
-                $('#item_pic').bind("change", function(e) {
-                  var files = e.target.files || e.dataTransfer.files;
-                  // Our file var now holds the selected file
-                  file = files[0];
-                });
+              //   // Set an event listener on the Choose File field.
+              //   $('#item_pic').bind("change", function(e) {
+              //     var files = e.target.files || e.dataTransfer.files;
+              //     // Our file var now holds the selected file
+              //     file = files[0];
+              //   });
 
-                // This function is called when the user clicks on Upload to Parse. It will create the REST API request to upload this image to Parse.
-                $('#uploadbutton').click(function() {
-                  var serverUrl = 'https://api.parse.com/1/files/' + file.name;
+              //   // This function is called when the user clicks on Upload to Parse. It will create the REST API request to upload this image to Parse.
+              //   $('#uploadbutton').click(function() {
+              //     var serverUrl = 'https://api.parse.com/1/files/' + file.name;
 
-                  $.ajax({
-                    type: "POST",
-                    beforeSend: function(request) {
-                      request.setRequestHeader("X-Parse-Application-Id", 'GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha');
-                      request.setRequestHeader("X-Parse-REST-API-Key", 'Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI');
-                      request.setRequestHeader("Content-Type", file.type);
-                    },
-                    url: serverUrl,
-                    data: file,
-                    processData: false,
-                    contentType: false,
-                    success: function(data) {
-                        var item = new Parse.Object.extend("Items");
-                        var item2 = new item();
-                        item2.set("picture", file);
-                        item2.set("name", $("#inputName"));
-                        item2.set("address", $("#inputAddress"));
-                        item2.set("description", $("#inputDescription"));
-                        item2.set("price", $("#inputPrice"));
-                        item2.save(null, {
-                            success: function(item){
-                                alert("hi");
-                            },
-                            error: function(item, error){
-                                alert("fail");
-                            }
-                        });
-                    },
-                    error: function(data) {
-                      var obj = jQuery.parseJSON(data);
-                      alert(obj.error);
-                    }
-                  });
-                });
+              //     $.ajax({
+              //       type: "POST",
+              //       beforeSend: function(request) {
+              //         request.setRequestHeader("X-Parse-Application-Id", 'GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha');
+              //         request.setRequestHeader("X-Parse-REST-API-Key", 'Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI');
+              //         request.setRequestHeader("Content-Type", file.type);
+              //       },
+              //       url: serverUrl,
+              //       data: file,
+              //       processData: false,
+              //       contentType: false,
+              //       success: function(data) {
+              //           var item = new Parse.Object.extend("Items");
+              //           var item2 = new item();
+              //           item2.set("picture", file);
+              //           item2.set("name", $("#inputName"));
+              //           item2.set("address", $("#inputAddress"));
+              //           item2.set("description", $("#inputDescription"));
+              //           item2.set("price", $("#inputPrice"));
+              //           item2.save(null, {
+              //               success: function(item){
+              //                   alert("hi");
+              //               },
+              //               error: function(item, error){
+              //                   alert("fail");
+              //               }
+              //           });
+              //       },
+              //       error: function(data) {
+              //         var obj = jQuery.parseJSON(data);
+              //         alert(obj.error);
+              //       }
+              //     });
+              //   });
 
 
-              });
+              // });
             </script>
-                <form method='post' enctype="multipart/form-data">
+                <form action="/additem/" method='post'>
                     {% csrf_token %}
                     <input name='item_pic' id="item_pic" type="file" class="file">
 
@@ -185,8 +185,11 @@
                         {% if forloop.counter0|divisibleby:2%}
                             <div class="row">
                                 <div class="col-sm-6 col-md-6">
+                                    {% if item.picture %}
                                     <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" data-name="{{item.name}}" class="thumbnail"><img src="{{item.picture.url}}" style="height:200px"/>
-
+                                    {% else %}
+                                    <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" data-name="{{item.name}}" class="thumbnail"><img src="{{STATIC_URL}}{{item.picture_path}}" style="height:200px"/>
+                                    {% endif %}
                                     <div class="caption"><h3>{{item.name}}</h3>
 
                                         <div>
@@ -210,7 +213,11 @@
                             {% endif %}
                         {% else %}
                                 <div class="col-sm-6 col-md-6">
+                                    {% if item.picture %}
                                     <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" data-name="{{item.name}}" class="thumbnail"><img src="{{item.picture.url}}" style="height:200px"/>
+                                    {% else %}
+                                    <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" data-name="{{item.name}}" class="thumbnail"><img src="{{STATIC_URL}}images/{{item.picture_path}}" style="height:200px"/>
+                                    {% endif %}
 
                                     <div class="caption"><h3>{{item.name}}</h3>
 

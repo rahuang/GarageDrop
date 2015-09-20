@@ -45,13 +45,19 @@
                 <button type="button" data-toggle="collapse" data-target=".sidebar-collapse" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
                 <a id="logo" href=""><img src="../static/img/Garage_Drop_Logo.png" alt="logo" style="width:120px;height:60px;margin-top:5px;"></a></div>
             
-                <form id="topbar-search" action="" method="" class="hidden-sm hidden-xs">
-                    <div class="input-icon right text-white"><a href="#"></i></a><input type="text" placeholder="What are you looking for?" class="form-control text-white"/></div>
+                <form id="topbar-search" action="" method="get" class="hidden-sm hidden-xs">
+                    <div class="input-icon right text-white"><a href="#"></i></a><input id="keyword" type="text" placeholder="What are you looking for?" class="form-control text-white"/></div>
                 </form>
                 <form id="topbar-search" action="" method="" class="hidden-sm hidden-xs">
                     <div class="input-icon right text-white"><a href="#"></i></a><input type="text" placeholder="Where are you?" class="form-control text-white"/></div>
                 </form>
-                <div class="btn"><button type="button" class="btn btn-primary">Search</button></div>
+                <div class="btn"><button type="button" class="btn btn-primary" onclick="search();">Search</button>
+                <script type="text/javascript">
+                    function search(){
+                        window.location = "/?keyword=" + $("#keyword").val();
+                    }
+                </script>
+                </div>
                 <ul class="nav navbar navbar-top-links navbar-right mbn">
                     <li class="dropdown topbar-user"><a data-hover="dropdown" href="#" class="dropdown-toggle"><img src="{{ STATIC_URL }}images/avatar/48.jpg" alt="" class="img-responsive img-circle"/>&nbsp;<span class="hidden-xs">Robert John</span>&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu dropdown-user pull-right">

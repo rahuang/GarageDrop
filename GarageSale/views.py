@@ -48,12 +48,21 @@ class IndexPage(TemplateView):
     #template_name = 'index.html'
     def get(self, request):
         params = request.GET
+
         connection = httplib.HTTPSConnection('api.parse.com', 443)
         constraints = {
            "username": {
                 "$ne": "bob"
+            },
+            "status": {
+                "$ne": "IN TRANSIT"
             }
+
          }
+        keyword = ""
+        if 'keyword' in params:
+            keyword = params['keyword']
+            constraints['name'] = keyword
 
         search_params = urllib.urlencode({"where":json.dumps(constraints)})
         connection.connect()
@@ -64,7 +73,8 @@ class IndexPage(TemplateView):
         result = json.loads(connection.getresponse().read())
         items = result['results']
         json_items = json.dumps(items)
-        # return HttpResponse(items)
+        # return HttpResponse(items)        
+        # return HttpResponse(json_items[0])
         return render(request, 'index.html', {"items": items, "locations": json_items})
 
 class LoginPage(TemplateView):
@@ -261,17 +271,17 @@ class AddItemPage(TemplateView):
             address = form['inputAddress']
             price = form['inputPrice']
             description = form['inputDescription']
-            picture = request.FILES['item_pic']
+            picture = form['item_pic']
             imagees = '/static/images/'
             #hardcoding to jack
             connection = httplib.HTTPSConnection('api.parse.com', 443)
             connection.connect()
-            connection.request('POST', '/1/files/pic.jpg', open('/GarageSale/static/images/apple.jpg', 'rb').read(), {
-                   "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
-                   "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI",
-                   "Content-Type": "image/jpeg"
-                 })
-            result = json.loads(connection.getresponse().read())
+            # connection.request('POST', '/1/files/pic.jpg', open('/GarageSale/static/images/apple.jpg', 'rb').read(), {
+            #        "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+            #        "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI",
+            #        "Content-Type": "image/jpeg"
+            #      })
+            # result = json.loads(connection.getresponse().read())
 
             connection.request('POST', '/1/classes/Items', json.dumps({
                 "name": name,
@@ -285,10 +295,7 @@ class AddItemPage(TemplateView):
                     "latitude": 42.3611,
                     "longitude": -71.2323
                 },
-                "picture": {
-                    "name": "/1/files/pic.jpg",
-                    "__type": "File"
-                }
+                "picture_path": picture
                 }), {
                    "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
                    "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI",

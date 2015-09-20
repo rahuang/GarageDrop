@@ -22,29 +22,35 @@
     <div class="page-content">
         <div id="tab-general">
             <h1 style="color:gray;">CART</h1>
-            {% for item in trans_items %}
+            {% for item_cost in item_costs %}
                 <div class="row">
                     <div class="panel panel-default" style="margin:0px;">
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-left col-md-2">
                                     <a href="#">
-                                        <img class="media-object garage-image" src="{{ item.picture.url }}">
+                                        <img class="media-object garage-image" src="{{ item_cost.0.picture.url }}">
                                     </a>
                                         
                                 </div>
                                 <div class="media-body col-md-6">
-                                    <h4 class="media-heading">{{ item.name }}</h4>
-                                    <p>{{ item.description }}</p>
+                                    <h4 class="media-heading">{{ item_cost.0.name }}</h4>
+                                    <p>{{ item_cost.0.description }}</p>
                                 </div>
                                 <div class="price">
-                                    <h2>{{ item.price }}</h2>
+                                    <h2>${{ item_cost.0.price|floatformat:2 }}</h2>
+                                    <h3>Delivery Fee: + ${{item_cost.1|floatformat:2}}</h3>
                                 </div>
                             </div>
                         </div>
                     </div>    
                 </div>
             {% endfor %}
+            <div class="final-cost">
+                <h4><span style="color:red;">Total: {{total|floatformat:2}}</span></h4>
+                <button type="button" class="btn btn-default checkout-button">Checkout</button>    
+            </div>
+            
             
         </div>
     </div>

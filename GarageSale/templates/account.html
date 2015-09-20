@@ -1,8 +1,50 @@
 {% extends 'base.html' %}
-
-{% block title %}Account Page{% endblock %}
-
 {% block body %}
-    <p>Hello, world!</p>
-{% endblock %}
+<style type="text/css">
+    
 
+</style>
+<div id="page-wrapper">
+    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                General Account Settings</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li class="hidden"><a href="#">Tables</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li class="active">Account</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+        <table class="table table-hover table-bordered" style = "margin-bottom: 0;">
+            <tbody>
+            <tr>
+                <td><b>Name</b></td>
+                <td>Robert McKinley</td>
+                <td><button type="button" class="btn btn-primary">Edit</button></td>
+            </tr>
+            <tr>
+                <td><b>Username</b></td>
+                <td>bob</td>
+                <td><button type="button" class="btn btn-primary">Edit</button></td>
+            </tr>
+            <tr>
+                <td><b>Email</b></td>
+                <td>bob@hackmit.org</td>
+                <td><button type="button" class="btn btn-primary">Edit</button></td>
+            </tr>
+            <tr>
+                <td><b>Password</b></td>
+                <td>Last updated 4 months ago.</td>
+                <td><button type="button" class="btn btn-primary">Edit</button></td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="container" style="height: 500px;background-color: white;"></div>
+    </div>
+    
+</div>
+{% endblock %}

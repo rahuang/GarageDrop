@@ -7036,5 +7036,12 @@ ul.chats li.out .message {
   left: 150px;
 }
 
+.final-cost {
+  float: right;
+  text-align: right;
+  font-size: 30px;
+}
+
 
 .gm-style-iw + div {display: none;}
+

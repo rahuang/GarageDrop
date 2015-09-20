@@ -15,6 +15,8 @@ from django.contrib.auth.views import redirect_to_login
 
 from GarageSale.forms import DeliveryQuoteForm
 
+import json,httplib, urllib
+
 
 
 class ErrorView(View):
@@ -56,6 +58,22 @@ class IndexPage(TemplateView):
        result = json.loads(connection.getresponse().read())
        items = result['results']
        return render(request, 'index.html', {"items": items})
+
+    def get(self, request):
+        connection = httplib.HTTPSConnection('api.parse.com', 443)
+        params = urllib.urlencode({"where":json.dumps({
+           "username": {
+                "$ne": "bob"
+            },
+         })})
+        connection.connect()
+        connection.request('GET', '/1/classes/Items?%s' % params, '', {
+               "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+               "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+             })
+        result = json.loads(connection.getresponse().read())
+        items = result['results']
+        return render(request, 'index.html', {"items": items, "locations": json.dumps(items)})
 
 class LoginPage(TemplateView):
     """ The Account Page. """

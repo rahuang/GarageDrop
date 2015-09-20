@@ -7029,3 +7029,9 @@ ul.chats li.out .message {
   font-size: 50px;
 }
 
+
+.index-price{
+  bottom: 108px;
+  position: absolute;
+  left: 150px;
+}

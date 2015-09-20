@@ -1,34 +1,24 @@
 var main = function(){
-	$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_open.gif)')
-			setTimeout(function close(){
-				$('#wrapper').addClass("garage_opened");
-				$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_open.png)')
-			}, 2000);
-	setTimeout(function bounce(){
-		$('.ball_bounce').css('background-image', 'url(../static/img/ball_bounce.gif)')
-		$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_open2.png)')
-		setTimeout(function bounce_stop(){
-			$('.ball_bounce').css('background-image', 'url(../static/img/ball_bounce_stop.png)')
-		}, 1000)
-	}, 3000);
-	$('.form-group').click(function(){
-		if ($('#wrapper').hasClass("garage_closed")){
-			$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_open.gif)')
-			$('#wrapper').removeClass("garage_closed");
-			setTimeout(function close(){
-				$('#wrapper').addClass("garage_opened");
-				$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_open.png)')
-			}, 2000);
-		}
-		else if ($('#wrapper').hasClass("garage_opened")){
-			$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_close.gif)')
-			$('#wrapper').removeClass("garage_opened");
-			setTimeout(function close(){
-				$('#wrapper').addClass("garage_closed");
-				$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login.png)')
-			}, 2000);
-		}
+	$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_open.gif)');
+	setTimeout(function open(){
+		$('#wrapper').addClass("garage_opened");
+		$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_open.png)');
+		/*$('#ball').attr("src", "../static/img/ball_bounce.gif?" + Math.random());*/
+		/*setTimeout(function bounce_stop(){
+			$('#ball').attr("src", "../static/img/ball_bounce_stop.png");
+		}, 1000);*/
+	}, 1000);
+
+	$('.login_btn').click(function(){
+		$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login_close.gif)');
+		setTimeout(function login(){
+			$('#wrapper').css('background-image', 'url(../static/img/garage_sale_login.png)');
+			$('#wrapper').animate({'top' : '650px'}, {duration : 650});
+			$('#clouds').animate({'top' : '0px'}, {duration : 650});
+			$('.pin').animate({'top' : '50px'}, {duration : 1000});
+		}, 1000);
 	});
-};
+
+}
 
 $(document).ready(main);

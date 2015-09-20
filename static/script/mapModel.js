@@ -5,6 +5,7 @@ function placeMarkers(positions, map) {
         var marker = new google.maps.Marker({
             position: new google.maps.LatLng(pos[0], pos[1]),
             map: map,
+            animation: google.maps.Animation.DROP,
         });
         markers.push(marker);
     }

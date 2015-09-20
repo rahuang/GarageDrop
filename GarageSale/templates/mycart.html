@@ -48,7 +48,10 @@
             {% endfor %}
             <div class="final-cost">
                 <h4><span style="color:red;">Total: {{total|floatformat:2}}</span></h4>
-                <button type="button" class="btn btn-default checkout-button">Checkout</button>    
+                <form action="{% url 'checkout' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" type="button" class="btn btn-default" value="Checkout" />
+                </form>
             </div>
             
             

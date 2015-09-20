@@ -108,10 +108,44 @@ class GaragePage(TemplateView):
        sold_items = result['results']
        return render(request, 'garage.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
                                               "sold_items" : sold_items})
-
 class OrdersPage(TemplateView):
     """ The Orders Page. """
     template_name = 'orders.html'
+    def get(self, request):
+       connection = httplib.HTTPSConnection('api.parse.com', 443)
+       params1 = urllib.urlencode({"where":json.dumps({
+          "username": "bob",
+          "status" : "IN TRANSIT"
+          })})
+       params2 = urllib.urlencode({"where":json.dumps({
+          "username": "bob",
+          "status" : "UNSOLD"
+          })})
+       params3 = urllib.urlencode({"where":json.dumps({
+          "username": "bob",
+          "status" : "SOLD"
+          })})
+       connection.connect()
+       connection.request('GET', '/1/classes/Items?%s' % params1, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+       result = json.loads(connection.getresponse().read())
+       trans_items = result['results']
+       connection.request('GET', '/1/classes/Items?%s' % params2, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+       result = json.loads(connection.getresponse().read())
+       unsold_items = result['results']
+       connection.request('GET', '/1/classes/Items?%s' % params3, '', {
+              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
+            })
+       result = json.loads(connection.getresponse().read())
+       sold_items = result['results']
+       return render(request, 'orders.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
+                                              "sold_items" : sold_items})
 
 class AccountPage(TemplateView):
     """ The Account Page. """

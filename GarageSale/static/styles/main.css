@@ -1157,7 +1157,7 @@ background: #303030; /* Old browsers */
 /* End Left Sidebar Collapsed */
 .page-content {
   padding: 20px 20px 50px 20px;
-  min-height: 700px;
+  min-height: 500px;
 }
 #footer {
   position: fixed;
@@ -7037,12 +7037,6 @@ ul.chats li.out .message {
 }
 
 
-.index-price{
-  bottom: 108px;
-  position: absolute;
-  left: 150px;
-}
-
 .final-cost {
   float: right;
   text-align: right;
@@ -7052,3 +7046,13 @@ ul.chats li.out .message {
 
 .gm-style-iw + div {display: none;}
 
+
+.gpanel{
+  border-left: solid black 0px;
+  border-right: solid black 0px;
+
+}
+
+.garage-content h1 {
+  margin-left: 25px;
+}

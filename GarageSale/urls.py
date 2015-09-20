@@ -24,6 +24,8 @@ urlpatterns = patterns('',
     url(r'^mycart/$', views.MyCartPage.as_view(), name='mycart'),
     url(r'^checkout/$', views.CheckoutPage.as_view(), name='checkout'),
     url(r'^deliverydata/$', views.DeliveryDataPage.as_view(), name='deliverydata'),
+    url(r'^additem/$', views.AddItemPage.as_view(), name='additem'),
+
 
     
 

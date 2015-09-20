@@ -14,12 +14,41 @@
     </div>
     <!--END TITLE & BREADCRUMB PAGE-->
     <!--BEGIN CONTENT-->
-    <div class="page-content">
+    <div class="page-content garage-content">
         <div id="tab-general">
-            <h1 style="color:orange;">ITEMS IN TRANSIT</h1>
-            {% for item in trans_items %}
-                <div class="row">
-                    <div class="panel panel-default" style="margin:0px;">
+            <div class="row">
+                <div class="panel panel-default">
+                    <h1 style="color:orange;">ITEMS IN TRANSIT</h1>
+                    {% for item in trans_items %}
+                        <div class="panel panel-default gpanel" style="margin:0px;">
+                            <div class="panel-body">
+                                <div class="media">
+                                    <div class="media-left col-md-2">
+                                        <a href="#">
+                                            <img class="media-object garage-image" src="{{ item.picture.url }}">
+                                        </a>
+                                            
+                                    </div>
+                                    <div class="media-body col-md-6">
+                                        <h4 class="media-heading">{{ item.name }}</h4>
+                                        <p>{{ item.description }}</p>
+                                    </div>
+                                    <div class="price">
+                                        <h2>${{ item.price|floatformat:2 }}</h2>
+                                    </div>
+                                </div>
+                            </div>  
+                        </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="panel panel-default">
+                <h1 style="color:black;">PAST ORDERS</h1>
+                {% for item in sold_items %}
+                    <div class="panel panel-default gpanel" style="margin:0px;">
                         <div class="panel-body">
                             <div class="media">
                                 <div class="media-left col-md-2">
@@ -33,38 +62,16 @@
                                     <p>{{ item.description }}</p>
                                 </div>
                                 <div class="price">
-                                    <h2>{{ item.price }}</h2>
+                                    <h2>${{ item.price|floatformat:2 }}</h2>
                                 </div>
                             </div>
-                        </div>
-                    </div>    
+                        </div>    
+                    </div>
+                {% endfor %}
                 </div>
-            {% endfor %}
-            <h1 style="color:black;">PAST ORDERS</h1>
-            {% for item in sold_items %}
-                <div class="row">
-                    <div class="panel panel-default" style="margin:0px;">
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-left col-md-2">
-                                    <a href="#">
-                                        <img class="media-object garage-image" src="{{ item.picture.url }}">
-                                    </a>
-                                        
-                                </div>
-                                <div class="media-body col-md-6">
-                                    <h4 class="media-heading">{{ item.name }}</h4>
-                                    <p>{{ item.description }}</p>
-                                </div>
-                                <div class="price">
-                                    <h2>{{ item.price }}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                </div>
+            </div>
                 
-            {% endfor %}
+            
             
         </div>
     </div>

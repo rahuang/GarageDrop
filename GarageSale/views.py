@@ -238,7 +238,6 @@ class CheckoutPage(TemplateView):
 
 
         deliveries = api.get_all_deliveries()
-        # return HttpResponse(deliveries)
         return render(request, "delivery.html")
 
     def get(self, request):

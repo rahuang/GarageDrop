@@ -231,13 +231,14 @@ class CheckoutPage(TemplateView):
 
         for item in trans_items:
             pickup = pm.Location(item['username'], item['address'], '415-555-0000')
-            dropoff = pm.Location('bob', '85 Prescott St, Cambridge, MA', '415-777-9999')
+            dropoff = pm.Location('bob', '1 City Hall Square, Boston, MA', '415-777-9999')
             delivery = pm.Delivery(api, item['description'], pickup, dropoff)
             delivery.create()
 
 
         deliveries = api.get_all_deliveries()
-        return HttpResponse(deliveries)
+        # return HttpResponse(deliveries)
+        return render(request, "delivery.html")
 
     def get(self, request):
         return render(request, "delivery.html")
@@ -249,7 +250,7 @@ class DeliveryDataPage(TemplateView):
         api = pm.PostmatesAPI(test_key, test_id)
 
         deliveries = api.get_all_deliveries()
-        return HttpResponse(json.dumps(deliveries))
+        # return HttpResponse(json.dumps(deliveries))
         return render(request, "data.html", {"deliveries": deliveries, "data":random.randint(0, 5)})
 
 class AccountPage(TemplateView):

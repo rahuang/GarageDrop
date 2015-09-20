@@ -3,20 +3,27 @@
 {% block head %}
 <style type="text/css">
   html, body { height: 100%; margin: 0; padding: 0; }
-  #map { height: 500px; }
+  #map { height: 400px; }
 </style>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBcx2ylowTOZjDtyXHei3BUr6OKITdB4IE"></script>
 
 <script type="text/javascript">
     var marker = null;
     var map = null;
-    setInterval(function() {
+    var temp = setInterval(function() {
         $.ajax({
           url: "/deliverydata",
         }).done(function( data ) {
             var location = data.split(" ");
             marker.setPosition(new google.maps.LatLng(location[0], location[1]));
-            marker.setIcon(location[2]);
+            if(location[2] == "pending"){
+                $("#data").html("Pending Pickup...");
+            } else if (location[2] == "pickup"){
+                $("#data").html("Deliverying...");
+            } else {
+                $("#data").html("Delivered!");
+                clearInterval(temp);
+            }
         });
     }, 1000);
 
@@ -24,15 +31,21 @@
     function initMap(lat, lng) {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: lat, lng: lng},
-            zoom: 10
+            zoom: 16
         });
+        var infoWindow = new google.maps.InfoWindow({map: map, content: "Current Location"});
+        infoWindow.setPosition({
+            lat: lat,
+            lng: lng
+          });
+
         marker = new google.maps.Marker({
-            position: new google.maps.LatLng(lat, lng),
+            position: new google.maps.LatLng(0, 0),
             map: map,
             animation: google.maps.Animation.DROP,
         });
         marker.setMap(map);
-        marker.setIcon('https://d2abve4vv95fsr.cloudfront.net/5JaldKbEOUpWZhpm2axAuIAu4dc=/288x288/smart/com.postmates.img.prod.s3.amazonaws.com/7b23ed9f-def5-4b56-a7e7-59a4f8ba0be5/orig.jpg');
+        marker.setIcon('{{STATIC_URL}}images/orig.png');
     }
 </script>
 {% endblock %}
@@ -58,14 +71,14 @@
     <!--BEGIN CONTENT-->
     <div class="page-content">
         <div id="tab-general">
-            <!-- <div class="row">
-                <h1 style="color:orange;" id="data"></h1>
-            </div> -->
+            <div class="row">
+                <h1 style="color:orange;" id="data">Pending Pickup...</h1>
+            </div>
             <div class="row">
                 <div class="col-sm-6 col-md-12">
                     <div id="map">
                         <script type="text/javascript">
-                            initMap(42.3601, -71.0589);
+                            initMap(42.360091, -71.09416);
                         </script>
 
                     </div>

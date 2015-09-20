@@ -7035,3 +7035,9 @@ ul.chats li.out .message {
   position: absolute;
   left: 150px;
 }
+
+.final-cost {
+  float: right;
+  text-align: right;
+  font-size: 30px;
+}

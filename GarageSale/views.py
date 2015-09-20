@@ -43,14 +43,22 @@ class NotFoundView(ErrorView):
 class IndexPage(TemplateView):
 
     def get(self, request):
+        params = request.GET
         connection = httplib.HTTPSConnection('api.parse.com', 443)
-        params = urllib.urlencode({"where":json.dumps({
+        constraints = {
            "username": {
                 "$ne": "bob"
-            },
-         })})
+            }
+         }
+        if 'keyword' in params:
+            constraints["name"] = {
+                "$in": params['location']
+            }
+
+
+        search_params = urllib.urlencode({"where":json.dumps(constraints)})
         connection.connect()
-        connection.request('GET', '/1/classes/Items?%s' % params, '', {
+        connection.request('GET', '/1/classes/Items?%s' % search_params, '', {
                "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
                "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
              })

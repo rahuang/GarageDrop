@@ -7047,3 +7047,13 @@ ul.chats li.out .message {
 
 .gm-style-iw + div {display: none;}
 
+
+.gpanel{
+  border-left: solid black 0px;
+  border-right: solid black 0px;
+
+}
+
+.garage-content h1 {
+  margin-left: 25px;
+}

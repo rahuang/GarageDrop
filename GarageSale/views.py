@@ -7,7 +7,7 @@ import urllib
 
 from django.core.exceptions import PermissionDenied
 from django.http import (HttpResponse, HttpResponseNotFound,
-    HttpResponseBadRequest, HttpResponseServerError)
+    HttpResponseBadRequest, HttpResponseServerError, HttpResponseRedirect)
 from django.views.generic.base import View
 from django.views.generic import TemplateView
 from django.shortcuts import render
@@ -18,6 +18,7 @@ from GarageSale.forms import DeliveryQuoteForm
 import json,httplib, urllib
 import postmates as pm
 import random
+from django.templatetags.static import static
 
 
 
@@ -256,17 +257,26 @@ class AddItemPage(TemplateView):
     def post(self, request):
         if request.method == 'POST':
             form = request.POST
-            name = form['name']
-            address = form['address']
-            price = form['price']
-            description = form['description']
+            name = form['inputName']
+            address = form['inputAddress']
+            price = form['inputPrice']
+            description = form['inputDescription']
+            picture = request.FILES['item_pic']
+            imagees = '/static/images/'
             #hardcoding to jack
             connection = httplib.HTTPSConnection('api.parse.com', 443)
             connection.connect()
+            connection.request('POST', '/1/files/pic.jpg', open('/GarageSale/static/images/apple.jpg', 'rb').read(), {
+                   "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+                   "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI",
+                   "Content-Type": "image/jpeg"
+                 })
+            result = json.loads(connection.getresponse().read())
+
             connection.request('POST', '/1/classes/Items', json.dumps({
                 "name": name,
                 "address": address,
-                "price": price,
+                "price": float(price),
                 "description" : description,
                 "status" : "UNSOLD",
                 "username" : "jack",
@@ -274,6 +284,10 @@ class AddItemPage(TemplateView):
                     "__type": "GeoPoint",
                     "latitude": 42.3611,
                     "longitude": -71.2323
+                },
+                "picture": {
+                    "name": "/1/files/pic.jpg",
+                    "__type": "File"
                 }
                 }), {
                    "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
@@ -281,7 +295,7 @@ class AddItemPage(TemplateView):
                    "Content-Type": "application/json"
                 })
             results = json.loads(connection.getresponse().read())        
-            return HttpResponse(results)
+            return HttpResponseRedirect('/garage/')
     
 
 class AccountPage(TemplateView):

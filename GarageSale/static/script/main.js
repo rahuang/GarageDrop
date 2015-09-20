@@ -1,4 +1,5 @@
 $(function () {
+    console.log('asdf');
     //BEGIN MENU SIDEBAR
     $('#sidebar').css('min-height', '100%');
     $('#side-menu').metisMenu();

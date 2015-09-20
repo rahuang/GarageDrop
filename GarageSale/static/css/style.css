@@ -117,6 +117,12 @@ table tr th { color: #688a7e;}
     top: -38px;
     left: 160px;
 }
+
+.hidden ul li img{
+    visibility: hidden;
+    position: absolute;
+}
+
 .login-form {
     position: relative;
     right: 100px;

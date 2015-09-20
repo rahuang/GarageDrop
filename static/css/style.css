@@ -98,18 +98,14 @@ table tr th { color: #688a7e;}
   background-size: cover;
 }
 .login-img3-body{
-<<<<<<< HEAD
-  background: url('../img/garage_sale_login.png') no-repeat center center fixed; 
-=======
   background: url('../img/bg-1.jpg') no-repeat center center fixed; 
->>>>>>> 2370b36cdd7df21c1d8fb1caa1b6fee708e9d51e
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
-<<<<<<< HEAD
+
 .navbar-default{
     background: #d5d7de;
 }
@@ -122,9 +118,6 @@ table tr th { color: #688a7e;}
 .login-form {
     position: relative;
     right: 100px;
-=======
-.login-form {
->>>>>>> 2370b36cdd7df21c1d8fb1caa1b6fee708e9d51e
     max-width: 350px;
     margin: 200px auto 0;
     background: #d5d7de;    

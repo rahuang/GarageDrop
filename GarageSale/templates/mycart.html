@@ -7,12 +7,12 @@
     <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
         <div class="page-header pull-left">
             <div class="page-title">
-                Orders</div>
+                My Cart</div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
             <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
             <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
-            <li class="active">Orders</li>
+            <li class="active">My Cart</li>
         </ol>
         <div class="clearfix">
         </div>
@@ -21,7 +21,7 @@
     <!--BEGIN CONTENT-->
     <div class="page-content">
         <div id="tab-general">
-            <h1 style="color:orange;">ITEMS IN TRANSIT</h1>
+            <h1 style="color:gray;">CART</h1>
             {% for item in trans_items %}
                 <div class="row">
                     <div class="panel panel-default" style="margin:0px;">
@@ -44,31 +44,6 @@
                         </div>
                     </div>    
                 </div>
-            {% endfor %}
-            <h1 style="color:black;">PAST ORDERS</h1>
-            {% for item in sold_items %}
-                <div class="row">
-                    <div class="panel panel-default" style="margin:0px;">
-                        <div class="panel-body">
-                            <div class="media">
-                                <div class="media-left col-md-2">
-                                    <a href="#">
-                                        <img class="media-object garage-image" src="{{ item.picture.url }}">
-                                    </a>
-                                        
-                                </div>
-                                <div class="media-body col-md-6">
-                                    <h4 class="media-heading">{{ item.name }}</h4>
-                                    <p>{{ item.description }}</p>
-                                </div>
-                                <div class="price">
-                                    <h2>{{ item.price }}</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>    
-                </div>
-                
             {% endfor %}
             
         </div>

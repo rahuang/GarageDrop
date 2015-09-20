@@ -174,7 +174,7 @@ class OrdersPage(TemplateView):
     def get(self, request):
        connection = httplib.HTTPSConnection('api.parse.com', 443)
        params1 = urllib.urlencode({"where":json.dumps({
-          "username": "bob",
+          "username": {'$ne' : 'bob'},
           "status" : "IN TRANSIT"
           })})
        params2 = urllib.urlencode({"where":json.dumps({
@@ -192,19 +192,14 @@ class OrdersPage(TemplateView):
             })
        result = json.loads(connection.getresponse().read())
        trans_items = result['results']
-       connection.request('GET', '/1/classes/Items?%s' % params2, '', {
-              "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
-              "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
-            })
-       result = json.loads(connection.getresponse().read())
-       unsold_items = result['results']
+
        connection.request('GET', '/1/classes/Items?%s' % params3, '', {
               "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
               "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI"
             })
        result = json.loads(connection.getresponse().read())
        sold_items = result['results']
-       return render(request, 'orders.html', {"trans_items": trans_items, "unsold_items" : unsold_items,
+       return render(request, 'orders.html', {"trans_items": trans_items,
                                               "sold_items" : sold_items})
 
 
@@ -238,7 +233,7 @@ class CheckoutPage(TemplateView):
 
 
         deliveries = api.get_all_deliveries()
-        return HttpResponse(deliveries)
+        return render(request, "delivery.html")
 
     def get(self, request):
         return render(request, "delivery.html")

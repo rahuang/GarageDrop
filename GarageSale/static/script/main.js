@@ -4,6 +4,13 @@ $(function () {
     $('#sidebar').css('min-height', '100%');
     $('#side-menu').metisMenu();
 
+    $('.nav li a').click(function(){
+        alert("hi");
+        var x = document.getElementById("side-menu");
+        x.getElementsByClassName("active")[0].removeClass("active");
+        $(this).addClass("active");
+    })
+
     $(window).bind("load resize", function () {
         if ($(this).width() < 768) {
             $('div.sidebar-collapse').addClass('collapse');

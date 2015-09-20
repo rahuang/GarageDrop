@@ -77,9 +77,8 @@ class IndexPage(TemplateView):
         # return HttpResponse(json_items[0])
         return render(request, 'index.html', {"items": items, "locations": json_items})
 
-class IndexjPage(TemplateView):
+class IndexjPage(TemplateView): 
     """ The Index Page. """
-    #template_name = 'index.html'
     def get(self, request):
         params = request.GET
         connection = httplib.HTTPSConnection('api.parse.com', 443)
@@ -369,7 +368,7 @@ class AddItemPage(TemplateView):
                    "Content-Type": "application/json"
                 })
             results = json.loads(connection.getresponse().read())        
-            return HttpResponseRedirect('/garage/')
+            return HttpResponseRedirect('/garage/jack')
     
 
 class AccountPage(TemplateView):

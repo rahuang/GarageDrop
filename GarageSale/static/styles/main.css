@@ -128,6 +128,7 @@ hr {
   padding: 0 !important;
   background-color: #f0f2f5;
   transition: 0.3s all linear;
+  border-left: solid 1px #999999;
 }
 @media (min-width: 768px) {
   #page-wrapper {
@@ -814,6 +815,7 @@ hr {
 }
 #sidebar {
   background: #ffffff;
+  border-top: solid 1px #999999;
 }
 .navbar-static-side {
   transition: 0.3s all linear;

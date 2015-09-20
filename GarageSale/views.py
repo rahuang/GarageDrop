@@ -249,7 +249,7 @@ class DeliveryDataPage(TemplateView):
         api = pm.PostmatesAPI(test_key, test_id)
 
         deliveries = api.get_all_deliveries()
-        # return HttpResponse(json.dumps(deliveries))
+        return HttpResponse(json.dumps(deliveries))
         return render(request, "data.html", {"deliveries": deliveries, "data":random.randint(0, 5)})
 
 class AccountPage(TemplateView):

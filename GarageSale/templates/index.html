@@ -13,11 +13,10 @@
     function initMap(lat, lng, locations) {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: lat, lng: lng},
-            zoom: 17
+            zoom: 15
         });
         markers = placeMarkers(locations, map);
         setMapOnAll(markers, map);
-        map.setZoom(10);
 
         var data = {{ locations|safe }};
         var tooltip = []

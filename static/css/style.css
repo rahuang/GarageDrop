@@ -78,45 +78,40 @@ table tr th { color: #688a7e;}
 
 /*login page*/
 
-.login{
-    margin-top: 20px;
+.login-body {
+    background-color: #f1f2f7;
 }
-.login li{
-    display: inline;
+.login-img-body{
+  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
-
-.login .btn:hover{
-    background-color: #236267;
-    border: 1px solid white;
-    color: white;
+.login-img2-body{
+  background: url('../img/bg-1.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
-
-.login .btn{
-    background-color: white;
-    border: 1px solid #236267;
-    color: #236267;
-}
-
-.logo_bar{
-    margin-top: 80px;
-    text-align:center;
-}
-
-.logo{
-    margin:auto;
-    width: 240px;
-    height: 200px;
+.login-img3-body{
+  background: url('../img/garage_sale_login.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
-.ball_bounce{
-    background: url('../img/ball_bounce.png') no-repeat center center ;
-    width: 800px;
-    height:400px;
-    margin: auto;
-    position: relative;
-    top: -38px;
-    left: 160px;
+.navbar-default{
+    background: #d5d7de;
 }
+
+.navbar-brand{
+    padding: 0px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
 .login-form {
     position: relative;
     right: 100px;

@@ -7014,3 +7014,10 @@ ul.chats li.out .message {
   border-radius: 0px !important;
   border: 1px solid #e5e5e5;
 }
+
+
+.price{
+  bottom: 108px;
+  position: absolute;
+  left: 150px;
+}

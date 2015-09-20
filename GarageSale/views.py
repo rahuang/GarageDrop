@@ -52,7 +52,7 @@ class IndexPage(TemplateView):
              })
         result = json.loads(connection.getresponse().read())
         items = result['results']
-        return render(request, 'index.html', {"items": items})
+        return render(request, 'index.html', {"items": items, "locations": json.dumps(items)})
 
 class LoginPage(TemplateView):
     """ The Index Page. """

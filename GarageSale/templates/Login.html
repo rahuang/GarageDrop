@@ -21,6 +21,8 @@
     <!-- Custom styles -->
     <link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
     <link href="{{ STATIC_URL }}css/style-responsive.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}script/login.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
     <!--[if lt IE 9]>
@@ -28,12 +30,56 @@
     <script src="js/respond.min.js"></script>
     <![endif]-->
 </head>
-
-  <body class="login-img3-body">
-
-    <div class="container">
-
-      <form class="login-form" action="index.html">        
+<body id = "wrapper">
+<div class="container">
+    <div> 
+        <ul class = "login">
+            <li>
+                <button class="btn login_btn" type="submit">Login</button>
+            </li>
+            <li>
+                <button class="btn signup_btn" type="submit">Signup</button>
+            </li>
+        </ul>
+    </div>
+    <div class = 'logo_bar'>
+        <div class = 'logo'>
+            <a href="#">
+                <img src='../static/img/Garage_Drop_Logo.png' height = "200" width = "240">
+            </a>
+        </div>
+    </div>
+    <div> 
+        <div class = 'ball_bounce'>
+        </div>
+    </div>
+</div>
+<div class = "hidden">
+    <ul>
+        <li>
+            <img src='../static/img/ball_bounce.gif'>
+        </li>
+        <li>
+            <img src='../static/img/ball_bounce.png'>
+        </li>
+        <li>
+            <img src='../static/img/ball_bounce_stop.png'>
+        </li>
+        <li>
+            <img src='../static/img/garage_sale_login_close.gif'>
+        </li>
+        <li>
+            <img src='../static/img/garage_sale_login_open.gif'>
+        </li>
+        <li>
+            <img src='../static/img/garage_sale_login_open.png'>
+        </li>
+        <li>
+            <img src='../static/img/garage_sale_login_open2.png'>
+        </li>
+    </ul>
+</div>
+<!--     <form class="login-form" action="index.html">        
         <div class="login-wrap">
             <p class="login-img"><i class="icon_lock_alt"></i></p>
             <div class="input-group">
@@ -51,10 +97,37 @@
             <button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
             <button class="btn btn-info btn-lg btn-block" type="submit">Signup</button>
         </div>
-      </form>
+      </form> -->
+   <!--  <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                    <img src='../static/img/Garage_Drop_Logo.png' height = "70" width = "80">
+                </a>
+            </div>
+            <center>
+                <div class="navbar-collapse collapse" id="navbar-main">
+                    <form class="navbar-form navbar-right" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-default">Sign In</button>
+                    </form>
+                </div>
+            </center>
+        </div>
+    </div> -->
 
-    </div>
+      
 
 
-  </body>
-</html>
+ </body>
+ </html>

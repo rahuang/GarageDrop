@@ -7041,3 +7041,7 @@ ul.chats li.out .message {
   text-align: right;
   font-size: 30px;
 }
+
+
+.gm-style-iw + div {display: none;}
+

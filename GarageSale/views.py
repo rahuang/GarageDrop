@@ -17,6 +17,7 @@ from GarageSale.forms import DeliveryQuoteForm
 
 import json,httplib, urllib
 import postmates as pm
+import random
 
 
 
@@ -52,11 +53,6 @@ class IndexPage(TemplateView):
                 "$ne": "bob"
             }
          }
-        if 'keyword' in params:
-            constraints["name"] = {
-                "$in": params['location']
-            }
-
 
         search_params = urllib.urlencode({"where":json.dumps(constraints)})
         connection.connect()
@@ -66,7 +62,9 @@ class IndexPage(TemplateView):
              })
         result = json.loads(connection.getresponse().read())
         items = result['results']
-        return render(request, 'index.html', {"items": items, "locations": json.dumps(items)})
+        json_items = json.dumps(items)
+        # return HttpResponse(items)
+        return render(request, 'index.html', {"items": items, "locations": json_items})
 
 class LoginPage(TemplateView):
     """ The Account Page. """
@@ -114,7 +112,8 @@ class GaragePage(TemplateView):
 
 class MyCartPage(TemplateView):
     """ The Orders Page. """
-    def get(self, request):
+
+    def common(self, request):
         test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
         test_id = 'cus_KUqEcMmgrhGHH-'
         api = pm.PostmatesAPI(test_key, test_id)
@@ -149,6 +148,24 @@ class MyCartPage(TemplateView):
         #return HttpResponse(str(cost) + " " +str(total))
 
         return render(request, 'mycart.html', {"item_costs" : item_costs, "total" : total})
+
+    def get(self, request):
+        return self.common(request)
+        
+    def post(self, request):
+        get_params = request.POST
+        if "item" in get_params:
+            connection = httplib.HTTPSConnection('api.parse.com', 443)
+            connection.connect()
+            connection.request('PUT', '/1/classes/Items/' + get_params["item"], json.dumps({
+                   "status": "IN TRANSIT"
+                 }), {
+                   "X-Parse-Application-Id": "GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha",
+                   "X-Parse-REST-API-Key": "Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI",
+                   "Content-Type": "application/json"
+                 })
+
+        return self.common(request)
 
 class OrdersPage(TemplateView):
     """ The Orders Page. """
@@ -220,17 +237,20 @@ class CheckoutPage(TemplateView):
 
 
         deliveries = api.get_all_deliveries()
-        return HttpResponse(deliveries[''])
+        return HttpResponse(deliveries)
 
+    def get(self, request):
+        return render(request, "delivery.html")
+
+class DeliveryDataPage(TemplateView):
     def get(self, request):
         test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
         test_id = 'cus_KUqEcMmgrhGHH-'
         api = pm.PostmatesAPI(test_key, test_id)
 
         deliveries = api.get_all_deliveries()
-        return HttpResponse(deliveries['data'])
-
-
+        # return HttpResponse(json.dumps(deliveries))
+        return render(request, "data.html", {"deliveries": deliveries, "data":random.randint(0, 5)})
 
 class AccountPage(TemplateView):
     """ The Account Page. """

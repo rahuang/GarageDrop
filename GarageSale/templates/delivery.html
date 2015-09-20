@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script type="text/javascript">
+    setInterval(function() {
+        $.ajax({
+          url: "/deliverydata",
+        }).done(function( data ) {
+            $("#data").html(data);
+        });
+    }, 1000);
+</script>
+{% endblock %}
+
+{% block body %}
+<!--BEGIN PAGE WRAPPER-->
+<div id="page-wrapper">
+    <!--BEGIN TITLE & BREADCRUMB PAGE-->
+    <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+        <div class="page-header pull-left">
+            <div class="page-title">
+                Garage</div>
+        </div>
+        <ol class="breadcrumb page-breadcrumb pull-right">
+            <li><i class="fa fa-home"></i>&nbsp;<a href="dashboard.html">Home</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li class="hidden"><a href="#">Dashboard</a>&nbsp;&nbsp;<i class="fa fa-angle-right"></i>&nbsp;&nbsp;</li>
+            <li class="active">Garage</li>
+        </ol>
+        <div class="clearfix">
+        </div>
+    </div>
+    <!--END TITLE & BREADCRUMB PAGE-->
+    <!--BEGIN CONTENT-->
+    <div class="page-content">
+        <div id="tab-general">
+            <h1 style="color:orange;" id="data"></h1>
+            
+        </div>
+    </div>
+</div>
+<!--END PAGE WRAPPER-->
+
+{% endblock %}

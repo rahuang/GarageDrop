@@ -50,11 +50,6 @@ class IndexPage(TemplateView):
                 "$ne": "bob"
             }
          }
-        if 'keyword' in params:
-            constraints["name"] = {
-                "$in": params['location']
-            }
-
 
         search_params = urllib.urlencode({"where":json.dumps(constraints)})
         connection.connect()
@@ -64,7 +59,9 @@ class IndexPage(TemplateView):
              })
         result = json.loads(connection.getresponse().read())
         items = result['results']
-        return render(request, 'index.html', {"items": items, "locations": json.dumps(items)})
+        json_items = json.dumps(items)
+        # return HttpResponse(items)
+        return render(request, 'index.html', {"items": items, "locations": json_items})
 
 class LoginPage(TemplateView):
     """ The Account Page. """

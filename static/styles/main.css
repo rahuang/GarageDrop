@@ -7036,11 +7036,12 @@ ul.chats li.out .message {
   left: 150px;
 }
 
-<<<<<<< HEAD
-.checkout-button {
+.final-cost {
   float: right;
+  text-align: right;
+  font-size: 30px;
 }
-=======
+
 
 .gm-style-iw + div {display: none;}
->>>>>>> 470140ddd51b505170d1fefa1b50d8e1718bb3e5
+

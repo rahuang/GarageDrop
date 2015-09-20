@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^orders/$', views.OrdersPage.as_view(), name='orders'),
     url(r'^account/$', views.AccountPage.as_view(), name='account'),
     url(r'^mycart/$', views.MyCartPage.as_view(), name='mycart'),
+    url(r'^checkout/$', views.CheckoutPage.as_view(), name='checkout'),
 
     
 

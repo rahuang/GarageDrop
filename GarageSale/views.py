@@ -17,6 +17,7 @@ from GarageSale.forms import DeliveryQuoteForm
 
 import json,httplib, urllib
 import postmates as pm
+import random
 
 
 
@@ -236,17 +237,20 @@ class CheckoutPage(TemplateView):
 
 
         deliveries = api.get_all_deliveries()
-        return HttpResponse(deliveries[''])
+        return HttpResponse(deliveries)
 
+    def get(self, request):
+        return render(request, "delivery.html")
+
+class DeliveryDataPage(TemplateView):
     def get(self, request):
         test_key = '489913f8-8da9-431b-b2d3-05b013c87077'
         test_id = 'cus_KUqEcMmgrhGHH-'
         api = pm.PostmatesAPI(test_key, test_id)
 
         deliveries = api.get_all_deliveries()
-        return HttpResponse(deliveries['data'])
-
-
+        # return HttpResponse(json.dumps(deliveries))
+        return render(request, "data.html", {"deliveries": deliveries, "data":random.randint(0, 5)})
 
 class AccountPage(TemplateView):
     """ The Account Page. """

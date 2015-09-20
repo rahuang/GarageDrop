@@ -48,13 +48,13 @@
                 <form id="topbar-search" action="" method="get" class="hidden-sm hidden-xs">
                     <div class="input-icon right text-white"><a href="#"></i></a><input id="keyword" type="text" placeholder="What are you looking for?" class="form-control text-white"/></div>
                 </form>
-                <form id="topbar-search" action="" method="" class="hidden-sm hidden-xs">
+                <form id="topbar-search" action="" method="" class="hidden-sm hiddenx-xs">
                     <div class="input-icon right text-white"><a href="#"></i></a><input type="text" value="&#x2022 My Address" placeholder="Where are you now?" class="form-control text-white"/></div>
                 </form>
                 <div class="btn"><button type="button" class="btn btn-primary" onclick="search();">Search</button>
                 <script type="text/javascript">
                     function search(){
-                        window.location = "/?keyword=" + $("#keyword").val();
+                        window.location = "/home/bob?keyword=" + $("#keyword").val();
                     }
                 </script>
                 </div>

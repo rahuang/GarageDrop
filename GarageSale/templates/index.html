@@ -80,33 +80,87 @@
             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
           </div>
           <div class="modal-body">
-                <form action="{% url 'additem' %}" method='post' enctype="multipart/form-data">
+            <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.15.min.js"></script>
+            <script type="text/javascript">
+              $(function() {
+                var file;
+
+                // Set an event listener on the Choose File field.
+                $('#item_pic').bind("change", function(e) {
+                  var files = e.target.files || e.dataTransfer.files;
+                  // Our file var now holds the selected file
+                  file = files[0];
+                });
+
+                // This function is called when the user clicks on Upload to Parse. It will create the REST API request to upload this image to Parse.
+                $('#uploadbutton').click(function() {
+                  var serverUrl = 'https://api.parse.com/1/files/' + file.name;
+
+                  $.ajax({
+                    type: "POST",
+                    beforeSend: function(request) {
+                      request.setRequestHeader("X-Parse-Application-Id", 'GEhB6O9S9sJwKWRVlfcm2zghfmpN7ZIg5guhjHha');
+                      request.setRequestHeader("X-Parse-REST-API-Key", 'Ui7OtToUquSRwLGGHxDCLB0nX9t5o2IOwSVyRjRI');
+                      request.setRequestHeader("Content-Type", file.type);
+                    },
+                    url: serverUrl,
+                    data: file,
+                    processData: false,
+                    contentType: false,
+                    success: function(data) {
+                        var item = new Parse.Object.extend("Items");
+                        var item2 = new item();
+                        item2.set("picture", file);
+                        item2.set("name", $("#inputName"));
+                        item2.set("address", $("#inputAddress"));
+                        item2.set("description", $("#inputDescription"));
+                        item2.set("price", $("#inputPrice"));
+                        item2.save(null, {
+                            success: function(item){
+                                alert("hi");
+                            },
+                            error: function(item, error){
+                                alert("fail");
+                            }
+                        });
+                    },
+                    error: function(data) {
+                      var obj = jQuery.parseJSON(data);
+                      alert(obj.error);
+                    }
+                  });
+                });
+
+
+              });
+            </script>
+                <form method='post' enctype="multipart/form-data">
                     {% csrf_token %}
                     <input name='item_pic' id="item_pic" type="file" class="file">
 
                     <div class="form-group">
                         <div class="input-icon right">
                             <i class="fa fa-user"></i>
-                            <input name="inputName" type="text" placeholder="What are you selling?" class="form-control" /></div>
+                            <input name="inputName" id="inputName" type="text" placeholder="What are you selling?" class="form-control" /></div>
                     </div>
                     
                     <div class="form-group">
                         <div class="input-icon right">
                             <i class="fa fa-lock"></i>
-                            <input name="inputAddress" type="text" placeholder="Address" class="form-control" /></div>
+                            <input name="inputAddress" id="inputAddress" type="text" placeholder="Address" class="form-control" /></div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon right">
                             <i class="fa fa-envelope"></i>
-                            <input name="inputDescription" type="text" placeholder="Description" class="form-control" /></div>
+                            <input name="inputDescription" id="inputDescription" type="text" placeholder="Description" class="form-control" /></div>
                     </div>
                     <div class="form-group">
                         <div class="input-icon right">
                             <i class="fa fa-envelope"></i>
-                            <input name="inputPrice" type="text" placeholder="Price" class="form-control" /></div>
+                            <input name="inputPrice" id="inputPrice" type="text" placeholder="Price" class="form-control" /></div>
                     </div>
                     <div class="form-actions text-right pal">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" id="uploadbutton">
                           Submit</button>
                     </div>
                 </form>

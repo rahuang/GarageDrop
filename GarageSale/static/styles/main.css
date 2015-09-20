@@ -265,7 +265,8 @@ hr {
   color: #ffffff;
 }
 #topbar #topbar-search {
-  width: 250px;
+  width: 300px;
+  padding-right: 2px;
   float: left;
 }
 #topbar #topbar-search i {
@@ -6403,6 +6404,7 @@ li [class*=" icon-"].icon-large {
   border-color: #94a0b4;
 }
 .input-icon {
+  padding-right: 2px;
   position: relative;
 }
 .input-icon input {

@@ -24,7 +24,7 @@
         var tooltip = []
         for(var i = 0; i < data.length; i++){
             var temp = new google.maps.InfoWindow({
-                    content: $("#" + i).attr("data-price")
+                    content: $("#" + i).attr("data-name") + "<br>" + $("#" + i).attr("data-price")
                 });
             tooltip.push(temp);
         }
@@ -76,7 +76,7 @@
                         {% if forloop.counter0|divisibleby:2%}
                             <div class="row">
                                 <div class="col-sm-6 col-md-6">
-                                    <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" class="thumbnail"><img src="{{item.picture.url}}" style="height:200px"/>
+                                    <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" data-name="{{item.name}}" class="thumbnail"><img src="{{item.picture.url}}" style="height:200px"/>
 
                                     <div class="caption"><h3>{{item.name}}</h3>
 
@@ -91,7 +91,7 @@
                             {% endif %}
                         {% else %}
                                 <div class="col-sm-6 col-md-6">
-                                    <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" class="thumbnail"><img src="{{item.picture.url}}" style="height:200px"/>
+                                    <div id="{{forloop.counter0}}" data-price="${{item.price|floatformat:2}}" data-name="{{item.name}}" class="thumbnail"><img src="{{item.picture.url}}" style="height:200px"/>
 
                                     <div class="caption"><h3>{{item.name}}</h3>
 

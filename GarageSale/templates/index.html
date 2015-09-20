@@ -171,7 +171,7 @@
 
         </div>
     </div>
-    </div>
+     </div>
 
 
 
@@ -189,8 +189,14 @@
 
                                     <div class="caption"><h3>{{item.name}}</h3>
 
-                                        <p>{{item.description}}</p>
-                                        <h3 class="index-price">${{item.price|floatformat:2}}</h3>
+                                        <div>
+                                            <p>{{item.description}}</p>    
+                                        </div>
+                                        
+                                        <div>
+                                            <h3 class="index-price">${{item.price|floatformat:2}}</h3>    
+                                        </div>
+                                        
 
                                         <p><form method="POST" action="/mycart/">
                                             {% csrf_token %}

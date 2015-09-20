@@ -13,11 +13,10 @@
     function initMap(lat, lng, locations) {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: lat, lng: lng},
-            zoom: 17
+            zoom: 15
         });
         markers = placeMarkers(locations, map);
         setMapOnAll(markers, map);
-        map.setZoom(10);
 
         var data = {{ locations|safe }};
         var tooltip = []
@@ -38,8 +37,8 @@
         }
         var infoWindow = new google.maps.InfoWindow({map: map, content: "Current Location"});
         infoWindow.setPosition({
-            lat: 42.3601,
-            lng: -71.0589
+            lat: 42.360091,
+            lng: -71.09416
           });
 
     }
@@ -177,7 +176,7 @@
                                     locations.push([data[i]['location'].latitude, data[i]['location'].longitude]);
                                 }
 
-                                initMap(42.3601, -71.0589, locations);
+                                initMap(42.360091, -71.09416, locations);
                             </script>
                         </div>
                     </div>

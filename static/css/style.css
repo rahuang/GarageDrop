@@ -164,7 +164,6 @@ table tr th { color: #688a7e;}
 }
 
 .pin{
-    background: url('../img/pin.png') no-repeat center center ;
     position: absolute;
     width:450px;
     height: 659px;
@@ -177,6 +176,14 @@ table tr th { color: #688a7e;}
     opacity:1.0;
 }
 
+.moto{
+    background: url('../img/moto.png') no-repeat center center ;
+    position: absolute;
+    width:450px;
+    height: 659px;
+    top: -1500px;
+    left: 200px;
+}
 .form-group .form-control{
     width: 400px;
     position: absolute;

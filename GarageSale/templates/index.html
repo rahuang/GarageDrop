@@ -35,11 +35,15 @@
                 tooltip[$(this).attr("id")].close();
             });
         }
-        var infoWindow = new google.maps.InfoWindow({map: map, content: "Current Location"});
-        infoWindow.setPosition({
+        var currentLocationMarker = new google.maps.Marker({
+            map: map,
+            icon: '../static/img/rsz_1icon.png'
+        });
+        currentLocationMarker.setPosition({
             lat: 42.360091,
             lng: -71.09416
           });
+
 
     }
 

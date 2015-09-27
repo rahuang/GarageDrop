@@ -105,11 +105,6 @@ class LoginPage(TemplateView):
     template_name = 'Login.html'
 
 
-class LoginPage(TemplateView):
-    """ The Account Page. """
-    template_name = 'Login.html'
-
-
 
 class GaragePage(TemplateView):
     """ The Garage Page. """

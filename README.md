@@ -7,10 +7,6 @@ This project was built for the 24 hr hackathon, HackMIT. The inspiration for thi
 
 To run this on localhost all you need to do is enter: `python runserver.py`
 
-The web application is here hosted here: http://garagedrop.herokuapp.com
-
-Test username: bob
-
-Test password: 123
+The web application is here hosted here: http://garagedrop.herokuapp.com (username: bob, password: 123)
 
 Github Repo: https://github.com/rahuang/GarageDrop
